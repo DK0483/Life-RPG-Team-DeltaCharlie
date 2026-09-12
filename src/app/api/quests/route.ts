@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { authenticateRequest } from "@/lib/auth";
 import { DIFFICULTY_CONFIG } from "@/lib/rpg";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
   try {
     const auth = await authenticateRequest(request);

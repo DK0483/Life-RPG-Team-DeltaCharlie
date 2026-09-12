@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Press+Start+2P&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #090D16;
+  --foreground: #F3F4F6;
+  --gold-glow: rgba(245, 158, 11, 0.4);
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.15), rgba(255, 255, 255, 0)),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(245, 158, 11, 0.05), transparent);
+}
+
+/* Medieval / Fantasy font utility */
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Custom Scrollbar for RPG feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0F19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #233054;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}
+
+/* Tactile floating combat text animation */
+@keyframes floatAndFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0px) scale(0.9);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px) scale(1);
+  }
+}
+
+.floating-combat-text {
+  animation: floatAndFade 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+/* Shimmer shine effect for rare & epic loot */
+@keyframes goldShine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.loot-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: goldShine 3s infinite;
+}
+
+/* Golden pulse */
+.pulse-gold {
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.35);
+}
+
+/* Health glow */
+.pulse-health {
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.35);
+}
+
+/* Mana glow */
+.pulse-mana {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+}
