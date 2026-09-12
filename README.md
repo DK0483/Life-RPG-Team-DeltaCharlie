@@ -7,6 +7,19 @@
 | **Frontend Web App** | **Vercel** (Global Edge CDN)  | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)**                     | 🟢 **Live & Operational** |
 | **Backend REST API** | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)**   | 🟢 **Live & Operational** |
 | **API Health Check** | **Render / Vercel Proxy**     | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)**     |
+| **Demonstration Video** | **Google Drive**           | **[Watch Illustration Video](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)** | 🎥 **Verified (<100MB)**  |
+| **Source Repository** | **GitHub**                    | **[DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)**              | 🟢 **Main**               |
+
+---
+
+## 🎥 Illustration Demonstration Video
+
+[![Watch Demonstration Video](https://img.shields.io/badge/Demo_Video-Google_Drive-blue?style=for-the-badge&logo=google-drive)](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)
+
+> **Watch the full screen walkthrough (under 100MB, 90–180 seconds):**
+> **[Google Drive Link: Watch Demonstration Video](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)**
+>
+> Demonstrates user signup & authentication, 1-click quest packs, task completion with synthesized audio chimes, level-up fanfare, and a page reload (`F5`) to prove database persistence.
 
 ---
 
@@ -217,3 +230,15 @@ Life RPG is deployed with zero infrastructure costs using modern cloud edge arch
    - Next.js 14 hosted on Vercel's global edge network.
    - Transparent serverless reverse-proxy rewrite rule in `next.config.mjs` forwards all `/api/*` requests to Render, bypassing third-party cookie restrictions:
      `https://life-rpg-eight-teal.vercel.app`
+
+---
+
+## 👥 Team DeltaCharlie
+
+Built with ❤️ for the Hackathon by **Team DeltaCharlie**.
+
+- **Live Web App**: [https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)
+- **Backend API**: [https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)
+- **Demonstration Video**: [Watch on Google Drive](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)
+- **GitHub Repository**: [https://github.com/DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)
+
