@@ -178,6 +178,7 @@ export function QuestBoard() {
   };
 
   const handleToggleComplete = async (quest: Quest, event: React.MouseEvent) => {
+    sounds.unlock();
     const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
     const spawnX = rect.left + rect.width / 2;
     const spawnY = rect.top;

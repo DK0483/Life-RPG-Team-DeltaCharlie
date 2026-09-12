@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { sounds } from "@/lib/sound";
 import { Navbar } from "@/components/Navbar";
 import { CharacterSheet } from "@/components/CharacterSheet";
 import { QuestBoard } from "@/components/QuestBoard";
@@ -249,6 +250,55 @@ export default function HomePage() {
               <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
                 <span className="text-gray-300">Close Active Modal</span>
                 <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">Esc</kbd>
+              </div>
+            </div>
+
+            {/* Audio Test Section */}
+            <div className="mt-4 pt-3 border-t border-rpg-border/70">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-400 block mb-2">
+                🔊 Audio Diagnostics (Click to Test)
+              </span>
+              <div className="grid grid-cols-2 gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => {
+                    sounds.unlock();
+                    sounds.playQuestComplete();
+                  }}
+                  className="px-2.5 py-1.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[11px] font-bold transition flex items-center justify-center gap-1"
+                >
+                  <span>✨ Quest Chime</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sounds.unlock();
+                    sounds.playLevelUp();
+                  }}
+                  className="px-2.5 py-1.5 rounded-lg bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 text-purple-300 text-[11px] font-bold transition flex items-center justify-center gap-1"
+                >
+                  <span>🎺 Fanfare</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sounds.unlock();
+                    sounds.playCoin();
+                  }}
+                  className="px-2.5 py-1.5 rounded-lg bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/30 text-yellow-300 text-[11px] font-bold transition flex items-center justify-center gap-1"
+                >
+                  <span>🪙 Gold Coin</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    sounds.unlock();
+                    sounds.playBossHit();
+                  }}
+                  className="px-2.5 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 text-[11px] font-bold transition flex items-center justify-center gap-1"
+                >
+                  <span>⚔️ Boss Slash</span>
+                </button>
               </div>
             </div>
           </div>

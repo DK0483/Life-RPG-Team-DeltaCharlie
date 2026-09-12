@@ -96,6 +96,7 @@ export function ShopAndInventory() {
   };
 
   const handleBuyItem = async (item: ShopItem) => {
+    sounds.unlock();
     if (!character || character.gold < item.cost) {
       sounds.playError();
       showNotification(`Insufficient gold! You require ${item.cost} Gold.`, "error");
@@ -127,6 +128,7 @@ export function ShopAndInventory() {
   };
 
   const handleEquip = async (inventoryId: string) => {
+    sounds.unlock();
     try {
       const res = await fetch("/api/inventory/equip", {
         method: "POST",
@@ -154,6 +156,7 @@ export function ShopAndInventory() {
   };
 
   const handleConsume = async (inventoryId: string) => {
+    sounds.unlock();
     try {
       const res = await fetch("/api/inventory/use", {
         method: "POST",
