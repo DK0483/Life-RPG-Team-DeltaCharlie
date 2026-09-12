@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String          @id @default(cuid())
+  email        String          @unique
+  username     String          @unique
+  passwordHash String
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  character    Character?
+  quests       Quest[]
+  inventory    InventoryItem[]
+  activityLogs ActivityLog[]
+  bossBattles  UserBossBattle[]
+}
+
+model Character {
+  id             String    @id @default(cuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name           String
+  characterClass String    @default("Warrior") // Warrior, Mage, Rogue, Paladin
+  title          String    @default("Novice Adventurer")
+  level          Int       @default(1)
+  currentXp      Int       @default(0)
+  gold           Int       @default(100)
+
+  currentHp      Int       @default(100)
+  maxHp          Int       @default(100)
+  currentMana    Int       @default(50)
+  maxMana        Int       @default(50)
+
+  strength       Int       @default(10)
+  intellect      Int       @default(10)
+  vitality       Int       @default(10)
+  agility        Int       @default(10)
+  charisma       Int       @default(10)
+
+  streakCount    Int       @default(0)
+  longestStreak  Int       @default(0)
+  lastActiveDate DateTime?
+
+  activeTheme    String    @default("dark-fantasy")
+  activeBadge    String    @default("Hero In Training")
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Quest {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String?
+  category    String    @default("Intellect") // Strength, Intellect, Vitality, Agility, Charisma
+  difficulty  String    @default("Medium") // Trivial, Easy, Medium, Hard, Epic
+  priority    String    @default("Normal") // Low, Normal, High
+  recurrence  String    @default("ONCE") // ONCE, DAILY, HABIT
+
+  xpReward    Int       @default(60)
+  goldReward  Int       @default(25)
+  statReward  Int       @default(1)
+
+  isCompleted Boolean   @default(false)
+  completedAt DateTime?
+  dueDate     DateTime?
+  streak      Int       @default(0)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Item {
+  id             String          @id @default(cuid())
+  name           String
+  description    String
+  category       String          // WEAPON, ARMOR, ACCESSORY, POTION, THEME, BADGE
+  rarity         String          @default("Common") // Common, Uncommon, Rare, Epic, Legendary
+  cost           Int             @default(50)
+  statBonusType  String?         // Strength, Intellect, Vitality, Agility, Charisma, MaxHp, MaxMana
+  statBonusValue Int             @default(0)
+  icon           String          // Lucide icon name or emoji identifier
+  isConsumable   Boolean         @default(false)
+  isEquippable   Boolean         @default(true)
+
+  createdAt      DateTime        @default(now())
+  inventoryItems InventoryItem[]
+}
+
+model InventoryItem {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  itemId     String
+  item       Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  isEquipped Boolean  @default(false)
+  quantity   Int      @default(1)
+  acquiredAt DateTime @default(now())
+}
+
+model Boss {
+  id          String           @id @default(cuid())
+  name        String
+  title       String
+  description String
+  maxHp       Int              @default(500)
+  currentHp   Int              @default(500)
+  level       Int              @default(3)
+  rewardXp    Int              @default(500)
+  rewardGold  Int              @default(250)
+  badgeReward String?
+  avatar      String           @default("dragon")
+  isActive    Boolean          @default(true)
+
+  battles     UserBossBattle[]
+}
+
+model UserBossBattle {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  bossId       String
+  boss         Boss     @relation(fields: [bossId], references: [id], onDelete: Cascade)
+
+  currentHp    Int
+  maxHp        Int
+  isDefeated   Boolean  @default(false)
+  damageDealt  Int      @default(0)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ActivityLog {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  action     String   // QUEST_COMPLETED, LEVEL_UP, ITEM_BOUGHT, ITEM_EQUIPPED, ITEM_USED, BOSS_ATTACK, BOSS_DEFEATED, STREAK_EXTENDED
+  title      String
+  details    String?
+  xpGained   Int      @default(0)
+  goldGained Int      @default(0)
+
+  createdAt  DateTime @default(now())
+}
