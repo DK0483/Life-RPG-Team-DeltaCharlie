@@ -7,7 +7,7 @@
 | **Frontend Web App** | **Vercel** (Global Edge CDN)  | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)**                     | 🟢 **Live & Operational** |
 | **Backend REST API** | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)**   | 🟢 **Live & Operational** |
 | **API Health Check** | **Render / Vercel Proxy**     | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)**     |
-| **Production Demo / Drive** | **Google Drive** | **[Project Demo / Submission](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)** | 🟢 **Available** |
+| **Production Demo / Video Link** | **Google Drive** | **[Project Demo / Submission](https://drive.google.com/file/d/1EJqMNlXugO4G1k6abrWuLo2u-uI0SsVB/view?usp=sharing)** | 🟢 **Available** |
 
 ---
 
