@@ -11,6 +11,7 @@ import { BossArena } from "@/components/BossArena";
 import { ActivityLogView } from "@/components/ActivityLogView";
 import { AuthModal } from "@/components/AuthModal";
 import { LevelUpModal } from "@/components/LevelUpModal";
+import { GuidanceBanner } from "@/components/GuidanceBanner";
 import {
   Swords,
   Shield,
@@ -89,7 +90,9 @@ export default function HomePage() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {user && character ? (
           /* Authenticated Hero Dashboard */
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div>
+            <GuidanceBanner onNavigate={setActiveTab} activeTab={activeTab} />
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Left Column: Character Sheet & Vitals */}
             <div className="lg:col-span-4 sticky top-20">
               <CharacterSheet />
@@ -103,6 +106,7 @@ export default function HomePage() {
               {activeTab === "logs" && <ActivityLogView />}
             </div>
           </div>
+        </div>
         ) : (
           /* Unauthenticated Landing & Realm Showcase */
           <div className="py-12 sm:py-20 flex flex-col items-center text-center max-w-4xl mx-auto">

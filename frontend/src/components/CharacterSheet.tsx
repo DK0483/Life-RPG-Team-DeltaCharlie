@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { sounds } from "@/lib/sound";
+import { ClassAvatar } from "./ClassAvatar";
+import { AttributeRadar } from "./AttributeRadar";
 import {
   Shield,
   Dumbbell,
@@ -39,6 +41,7 @@ export function CharacterSheet() {
   const { character, refreshCharacter } = useAuth();
   const [inventory, setInventory] = useState<InventoryItem[]>([]);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [statViewMode, setStatViewMode] = useState<"list" | "radar">("list");
 
   const fetchInventory = useCallback(async () => {
     try {
@@ -143,12 +146,10 @@ export function CharacterSheet() {
       <div className="relative p-5 pb-4 bg-gradient-to-b from-rpg-border/30 to-transparent border-b border-rpg-border/40">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            {/* Class Crest / Avatar */}
-            <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-900 to-slate-900 border-2 border-amber-400/50 flex items-center justify-center shadow-lg shadow-amber-500/10">
-              <span className="font-cinzel font-black text-2xl text-amber-300">
-                {character.characterClass[0]}
-              </span>
-              <div className="absolute -bottom-2 -right-2 bg-amber-500 text-gray-950 font-extrabold text-[11px] px-1.5 py-0.5 rounded-md shadow border border-amber-300">
+            {/* Custom Glowing Class Avatar */}
+            <div className="relative">
+              <ClassAvatar characterClass={character.characterClass} size="md" />
+              <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-amber-500 to-yellow-400 text-gray-950 font-black text-[11px] px-1.5 py-0.5 rounded-md shadow-md border border-amber-300">
                 Lvl {character.level}
               </div>
             </div>
@@ -236,10 +237,38 @@ export function CharacterSheet() {
       <div className={`p-5 space-y-5 ${isExpanded ? "block" : "hidden sm:block"}`}>
         {/* Core Attributes */}
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-1.5">
-            <Shield className="w-3.5 h-3.5 text-amber-400" /> Hero Attributes
-          </h3>
-          <div className="grid grid-cols-1 gap-2">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5">
+              <Shield className="w-3.5 h-3.5 text-amber-400" /> Hero Attributes
+            </h3>
+            <div className="flex items-center bg-rpg-bg p-0.5 rounded-lg border border-rpg-border text-[10px]">
+              <button
+                type="button"
+                onClick={() => setStatViewMode("list")}
+                className={`px-2 py-0.5 rounded-md font-semibold transition ${
+                  statViewMode === "list" ? "bg-amber-500 text-gray-950 font-bold" : "text-gray-400 hover:text-white"
+                }`}
+              >
+                List
+              </button>
+              <button
+                type="button"
+                onClick={() => setStatViewMode("radar")}
+                className={`px-2 py-0.5 rounded-md font-semibold transition ${
+                  statViewMode === "radar" ? "bg-amber-500 text-gray-950 font-bold" : "text-gray-400 hover:text-white"
+                }`}
+              >
+                Radar Web
+              </button>
+            </div>
+          </div>
+
+          {statViewMode === "radar" ? (
+            <div className="bg-rpg-bg/60 rounded-xl border border-rpg-border/60 py-2 animate-in fade-in duration-300">
+              <AttributeRadar stats={character.totalStats || character} />
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 gap-2 animate-in fade-in duration-300">
             {stats.map((stat) => {
               const Icon = stat.icon;
               return (
@@ -268,6 +297,7 @@ export function CharacterSheet() {
               );
             })}
           </div>
+          )}
         </div>
 
         {/* Equipped Paperdoll Gear */}

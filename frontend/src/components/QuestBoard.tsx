@@ -21,6 +21,9 @@ import {
   Clock,
   Search,
   Filter,
+  Scroll,
+  Loader2,
+  Check,
 } from "lucide-react";
 
 export interface Quest {
@@ -48,6 +51,157 @@ interface FloatingFeedback {
   y: number;
 }
 
+export interface QuestPack {
+  id: string;
+  name: string;
+  tagline: string;
+  icon: string;
+  badgeClass: string;
+  quests: {
+    title: string;
+    description: string;
+    category: "Strength" | "Intellect" | "Vitality" | "Agility" | "Charisma";
+    difficulty: "Trivial" | "Easy" | "Medium" | "Hard" | "Epic";
+    priority: "Low" | "Normal" | "High";
+    recurrence: "ONCE" | "DAILY" | "HABIT";
+  }[];
+}
+
+export const QUEST_PACKS: QuestPack[] = [
+  {
+    id: "code-archmage",
+    name: "Code Archmage Pack",
+    tagline: "Software craftsmanship, algorithms, and system design mastery",
+    icon: "💻",
+    badgeClass: "bg-blue-500/10 border-blue-500/30 text-blue-300",
+    quests: [
+      {
+        title: "Conquer 2 LeetCode Medium Algorithms",
+        description: "Sharpen algorithmic problem solving, recursion, and time complexity mastery.",
+        category: "Intellect",
+        difficulty: "Medium",
+        priority: "High",
+        recurrence: "DAILY",
+      },
+      {
+        title: "Refactor System Module & Add Unit Tests",
+        description: "Purge code smells, enforce type safety, and achieve robust test coverage.",
+        category: "Intellect",
+        difficulty: "Hard",
+        priority: "High",
+        recurrence: "ONCE",
+      },
+      {
+        title: "Read 15 Pages of System Design Codex",
+        description: "Analyze distributed architectures, rate limiting, and cache synchronization.",
+        category: "Intellect",
+        difficulty: "Easy",
+        priority: "Normal",
+        recurrence: "DAILY",
+      },
+    ],
+  },
+  {
+    id: "titan-fitness",
+    name: "Titan Fitness Pack",
+    tagline: "Unbreakable physical vigor, endurance, and iron discipline",
+    icon: "🏋️",
+    badgeClass: "bg-red-500/10 border-red-500/30 text-red-300",
+    quests: [
+      {
+        title: "50 Pushups & 2-Minute Core Plank",
+        description: "Full body explosive power and iron core endurance session.",
+        category: "Strength",
+        difficulty: "Medium",
+        priority: "Normal",
+        recurrence: "DAILY",
+      },
+      {
+        title: "45-Minute Heavy Iron Lifting Workout",
+        description: "Progressive overload weight training to forge maximum muscular density.",
+        category: "Strength",
+        difficulty: "Hard",
+        priority: "High",
+        recurrence: "DAILY",
+      },
+      {
+        title: "Hydrate With 2.5 Liters of Pure Water",
+        description: "Cleanse toxins and sustain peak cellular hydration throughout the day.",
+        category: "Vitality",
+        difficulty: "Easy",
+        priority: "Normal",
+        recurrence: "HABIT",
+      },
+    ],
+  },
+  {
+    id: "scholar-student",
+    name: "Scholar & Student Pack",
+    tagline: "Laser focus, structured memorization, and academic triumph",
+    icon: "📚",
+    badgeClass: "bg-amber-500/10 border-amber-500/30 text-amber-300",
+    quests: [
+      {
+        title: "Deep Focus Pomodoro Block (90 Mins)",
+        description: "Zero distractions, silenced notifications, pure immersion in coursework.",
+        category: "Intellect",
+        difficulty: "Medium",
+        priority: "High",
+        recurrence: "DAILY",
+      },
+      {
+        title: "Synthesize Lecture Notes into Flashcards",
+        description: "Active recall and spaced repetition distillation of weekly concepts.",
+        category: "Intellect",
+        difficulty: "Medium",
+        priority: "Normal",
+        recurrence: "ONCE",
+      },
+      {
+        title: "Organize Study Sanctuary & Workspace",
+        description: "De-clutter physical desk and organize project files for maximum flow.",
+        category: "Agility",
+        difficulty: "Easy",
+        priority: "Low",
+        recurrence: "HABIT",
+      },
+    ],
+  },
+  {
+    id: "balanced-life",
+    name: "Balanced Life & Wellness Pack",
+    tagline: "Holistic vitality, peaceful mindset, and social warmth",
+    icon: "🌿",
+    badgeClass: "bg-emerald-500/10 border-emerald-500/30 text-emerald-300",
+    quests: [
+      {
+        title: "15-Minute Morning Sunlight Walk",
+        description: "Awaken cortisol rhythm naturally and prime mitochondrial energy.",
+        category: "Vitality",
+        difficulty: "Easy",
+        priority: "Normal",
+        recurrence: "DAILY",
+      },
+      {
+        title: "10-Minute Mindful Meditation & Breathwork",
+        description: "Regulate parasympathetic nervous system and eliminate background stress.",
+        category: "Charisma",
+        difficulty: "Easy",
+        priority: "Normal",
+        recurrence: "HABIT",
+      },
+      {
+        title: "Reach Out & Check In With a Comrade",
+        description: "Send an encouraging word or phone call to fortify bonds of friendship.",
+        category: "Charisma",
+        difficulty: "Medium",
+        priority: "Normal",
+        recurrence: "ONCE",
+      },
+    ],
+  },
+];
+
 export function QuestBoard() {
   const { refreshCharacter, triggerLevelUp } = useAuth();
   const [quests, setQuests] = useState<Quest[]>([]);
@@ -59,6 +213,9 @@ export function QuestBoard() {
 
   // Modal states
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isPackModalOpen, setIsPackModalOpen] = useState(false);
+  const [importingPackId, setImportingPackId] = useState<string | null>(null);
+  const [packFeedback, setPackFeedback] = useState<string | null>(null);
   const [editingQuest, setEditingQuest] = useState<Quest | null>(null);
 
   // Form states
@@ -174,6 +331,32 @@ export function QuestBoard() {
       }
     } catch (e) {
       console.error(e);
+    }
+  };
+
+  const handleImportPack = async (pack: QuestPack) => {
+    sounds.unlock();
+    setImportingPackId(pack.id);
+    try {
+      for (const q of pack.quests) {
+        await fetch("/api/quests", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(q),
+        });
+      }
+      sounds.playQuestComplete();
+      await fetchQuests();
+      setPackFeedback(`✨ Summoned the "${pack.name}"! Added ${pack.quests.length} quests.`);
+      setTimeout(() => {
+        setPackFeedback(null);
+        setIsPackModalOpen(false);
+      }, 1400);
+    } catch (err) {
+      console.error("Failed to import pack:", err);
+      sounds.playError();
+    } finally {
+      setImportingPackId(null);
     }
   };
 
@@ -342,13 +525,27 @@ export function QuestBoard() {
           </p>
         </div>
 
-        <button
-          onClick={openCreateModal}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-gray-950 font-black text-sm shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-95 transition-all"
-        >
-          <Plus className="w-4 h-4 stroke-[3]" />
-          <span>Summon New Quest</span>
-        </button>
+        <div className="flex items-center gap-2.5 w-full sm:w-auto">
+          <button
+            onClick={() => {
+              sounds.unlock();
+              setIsPackModalOpen(true);
+            }}
+            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-rpg-bg hover:bg-rpg-cardHover border border-amber-500/40 hover:border-amber-400 text-amber-300 font-bold text-xs shadow-sm transition-all active:scale-95"
+            title="Summon 1-Click Curated Quest Packs"
+          >
+            <Scroll className="w-4 h-4 text-amber-400" />
+            <span>Curated Packs</span>
+          </button>
+
+          <button
+            onClick={openCreateModal}
+            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-gray-950 font-black text-xs sm:text-sm shadow-lg shadow-amber-500/20 hover:brightness-110 active:scale-95 transition-all"
+          >
+            <Plus className="w-4 h-4 stroke-[3]" />
+            <span>Summon Quest</span>
+          </button>
+        </div>
       </div>
 
       {/* Filter & Search Bar */}
@@ -416,12 +613,24 @@ export function QuestBoard() {
           <p className="text-xs text-gray-400 max-w-sm mt-1 mb-4">
             No matching tasks found. Adjust your filters or summon a new adventure to begin earning XP!
           </p>
-          <button
-            onClick={openCreateModal}
-            className="px-4 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-xs transition"
-          >
-            Create Your First Quest
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <button
+              onClick={() => {
+                sounds.unlock();
+                setIsPackModalOpen(true);
+              }}
+              className="px-4 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 font-bold text-xs transition flex items-center gap-1.5"
+            >
+              <Scroll className="w-3.5 h-3.5" />
+              <span>Load Curated Pack</span>
+            </button>
+            <button
+              onClick={openCreateModal}
+              className="px-4 py-2 rounded-lg bg-rpg-bg hover:bg-rpg-cardHover text-gray-300 border border-rpg-border font-bold text-xs transition"
+            >
+              Create Custom Quest
+            </button>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -698,6 +907,104 @@ export function QuestBoard() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Curated Quest Packs Modal */}
+      {isPackModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-rpg-card border border-rpg-border/90 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col p-5 sm:p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+            <button
+              onClick={() => setIsPackModalOpen(false)}
+              className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="mb-4">
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] font-bold mb-2">
+                <Scroll className="w-3 h-3 text-amber-400" />
+                <span>1-Click Curated Guild Packs</span>
+              </div>
+              <h3 className="font-cinzel text-xl sm:text-2xl font-black text-gray-100 flex items-center gap-2">
+                <span>Select an Adventure Pack</span>
+              </h3>
+              <p className="text-xs text-gray-400 mt-1">
+                Instantly inject balanced, high-yield questlines into your guild journal.
+              </p>
+            </div>
+
+            {packFeedback && (
+              <div className="mb-4 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center gap-2 animate-in fade-in">
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{packFeedback}</span>
+              </div>
+            )}
+
+            <div className="overflow-y-auto space-y-3.5 pr-1 flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {QUEST_PACKS.map((pack) => {
+                  const isImporting = importingPackId === pack.id;
+                  return (
+                    <div
+                      key={pack.id}
+                      className="bg-rpg-bg/90 border border-rpg-border/80 rounded-xl p-4 flex flex-col justify-between hover:border-amber-500/40 transition-colors"
+                    >
+                      <div>
+                        <div className="flex items-start gap-2.5 mb-2">
+                          <span className="text-2xl select-none">{pack.icon}</span>
+                          <div>
+                            <h4 className="font-cinzel text-sm font-bold text-gray-100">
+                              {pack.name}
+                            </h4>
+                            <span
+                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-md border inline-block mt-0.5 ${pack.badgeClass}`}
+                            >
+                              {pack.quests.length} Pre-built Quests
+                            </span>
+                          </div>
+                        </div>
+                        <p className="text-xs text-gray-400 mb-3 leading-relaxed">
+                          {pack.tagline}
+                        </p>
+
+                        <div className="space-y-1.5 border-t border-rpg-border/40 pt-2.5 mb-3">
+                          {pack.quests.map((q, idx) => (
+                            <div key={idx} className="flex items-center justify-between text-[11px] gap-2">
+                              <span className="text-gray-300 truncate font-medium">
+                                • {q.title}
+                              </span>
+                              <span className="text-[10px] text-gray-500 shrink-0 font-mono">
+                                [{q.category} · {q.difficulty}]
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => handleImportPack(pack)}
+                        disabled={importingPackId !== null}
+                        className="w-full mt-2 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 disabled:opacity-50 text-gray-950 text-xs font-black shadow-md shadow-amber-500/10 transition-all active:scale-95 flex items-center justify-center gap-1.5"
+                      >
+                        {isImporting ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Summoning {pack.quests.length} Quests...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Scroll className="w-3.5 h-3.5" />
+                            <span>Import Pack ({pack.quests.length} Quests)</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       )}
