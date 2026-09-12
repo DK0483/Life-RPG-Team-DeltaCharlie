@@ -31,7 +31,14 @@ export default function HomePage() {
   const { user, character, isLoading, toggleSound } = useAuth();
   const [activeTab, setActiveTab] = useState<"quests" | "shop" | "boss" | "logs">("quests");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
+  const openAuth = (mode: "login" | "register" = "login") => {
+    sounds.unlock();
+    setAuthMode(mode);
+    setIsAuthModalOpen(true);
+  };
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -84,7 +91,7 @@ export default function HomePage() {
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        onOpenAuth={() => setIsAuthModalOpen(true)}
+        onOpenAuth={openAuth}
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8">
@@ -132,15 +139,15 @@ export default function HomePage() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-16">
               <button
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => openAuth("register")}
                 className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-gray-950 font-black text-sm shadow-xl shadow-amber-500/25 transition active:scale-95 flex items-center justify-center gap-2"
               >
-                <span>Forge Your Hero</span>
+                <span>Forge Your Hero (Sign Up)</span>
                 <ArrowRight className="w-4 h-4 stroke-[3]" />
               </button>
 
               <button
-                onClick={() => setIsAuthModalOpen(true)}
+                onClick={() => openAuth("login")}
                 className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-rpg-card hover:bg-rpg-cardHover border border-rpg-border text-gray-200 font-bold text-sm transition"
               >
                 Sign In to Existing Hero
@@ -316,6 +323,7 @@ export default function HomePage() {
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
+        initialMode={authMode}
       />
     </div>
   );

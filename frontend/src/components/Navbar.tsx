@@ -19,7 +19,7 @@ import {
 interface NavbarProps {
   activeTab: "quests" | "shop" | "boss" | "logs";
   setActiveTab: (tab: "quests" | "shop" | "boss" | "logs") => void;
-  onOpenAuth: () => void;
+  onOpenAuth: (mode?: "login" | "register") => void;
 }
 
 export function Navbar({ activeTab, setActiveTab, onOpenAuth }: NavbarProps) {
@@ -129,20 +129,29 @@ export function Navbar({ activeTab, setActiveTab, onOpenAuth }: NavbarProps) {
                 {/* Logout Button */}
                 <button
                   onClick={() => logout()}
-                  className="p-1.5 sm:p-2 rounded-lg bg-rpg-card hover:bg-red-500/20 border border-rpg-border hover:border-red-500/40 text-gray-400 hover:text-red-400 transition-all"
+                  className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-rpg-card hover:bg-red-500/20 border border-rpg-border hover:border-red-500/40 text-gray-400 hover:text-red-400 transition-all flex items-center gap-1.5 text-xs font-semibold"
                   title="Depart Camp (Logout)"
                 >
                   <LogOut className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Logout</span>
                 </button>
               </>
             ) : (
-              <button
-                onClick={onOpenAuth}
-                className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-gray-950 font-bold text-xs sm:text-sm shadow-md transition-all active:scale-95"
-              >
-                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span>Enter Realm</span>
-              </button>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <button
+                  onClick={() => onOpenAuth("login")}
+                  className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg bg-rpg-card hover:bg-rpg-cardHover border border-rpg-border text-gray-200 hover:text-amber-300 font-bold text-xs sm:text-sm transition-all"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => onOpenAuth("register")}
+                  className="flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-gray-950 font-black text-xs sm:text-sm shadow-md transition-all active:scale-95"
+                >
+                  <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span>Sign Up</span>
+                </button>
+              </div>
             )}
           </div>
         </div>

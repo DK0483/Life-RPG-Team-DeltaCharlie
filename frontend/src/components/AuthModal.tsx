@@ -18,11 +18,19 @@ import {
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
+  initialMode?: "login" | "register";
 }
 
-export function AuthModal({ isOpen, onClose }: AuthModalProps) {
+export function AuthModal({ isOpen, onClose, initialMode = "login" }: AuthModalProps) {
   const { login, register } = useAuth();
-  const [mode, setMode] = useState<"login" | "register">("login");
+  const [mode, setMode] = useState<"login" | "register">(initialMode);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setMode(initialMode);
+      setError("");
+    }
+  }, [isOpen, initialMode]);
 
   // Form states
   const [identifier, setIdentifier] = useState("");
@@ -168,7 +176,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 : "text-gray-400 hover:text-white"
             }`}
           >
-            Sign In
+            Sign In (Login)
           </button>
           <button
             type="button"
@@ -182,7 +190,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 : "text-gray-400 hover:text-white"
             }`}
           >
-            Create Hero
+            Sign Up (Create Hero)
           </button>
         </div>
 
@@ -235,9 +243,25 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               disabled={isSubmitting}
               className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-gray-950 font-black text-xs shadow-lg shadow-amber-500/20 transition active:scale-98 mt-2 flex items-center justify-center gap-2"
             >
-              <span>{isSubmitting ? "Authenticating..." : "Step Inside Guild"}</span>
+              <span>{isSubmitting ? "Authenticating..." : "Step Inside Guild (Sign In)"}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
+
+            <div className="text-center pt-2">
+              <p className="text-xs text-gray-400">
+                New to the realm?{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("register");
+                    setError("");
+                  }}
+                  className="text-amber-400 hover:text-amber-300 font-bold underline transition"
+                >
+                  Create Hero Account (Sign Up)
+                </button>
+              </p>
+            </div>
           </form>
         ) : (
           <form onSubmit={handleRegister} className="space-y-3.5">
@@ -331,8 +355,24 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               className="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-gray-950 font-black text-xs shadow-lg shadow-amber-500/20 transition active:scale-98 mt-2 flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4" />
-              <span>{isSubmitting ? "Awakening Hero..." : "Inscribe Hero & Begin"}</span>
+              <span>{isSubmitting ? "Awakening Hero..." : "Inscribe Hero & Begin (Sign Up)"}</span>
             </button>
+
+            <div className="text-center pt-2">
+              <p className="text-xs text-gray-400">
+                Already registered a hero?{" "}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode("login");
+                    setError("");
+                  }}
+                  className="text-amber-400 hover:text-amber-300 font-bold underline transition"
+                >
+                  Sign In (Login Here)
+                </button>
+              </p>
+            </div>
           </form>
         )}
 
