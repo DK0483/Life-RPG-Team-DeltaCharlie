@@ -129,12 +129,12 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-rpg-card border border-rpg-border rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-rpg-card border border-rpg-border rounded-2xl sm:rounded-3xl max-w-md w-full p-5 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition"
         >
           <X className="w-5 h-5" />
         </button>

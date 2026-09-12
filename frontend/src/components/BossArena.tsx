@@ -89,41 +89,41 @@ export function BossArena() {
       <div className="bg-gradient-to-r from-red-950/40 via-rpg-card to-rpg-card p-5 sm:p-6 rounded-2xl border border-red-900/50 shadow-xl relative overflow-hidden">
         <div className="absolute right-0 top-0 translate-x-10 -translate-y-10 w-64 h-64 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 relative z-10">
           {/* Boss Sprite & Identity */}
-          <div className="flex items-start gap-4">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br from-red-900 to-black border-2 border-red-500/50 flex items-center justify-center flex-shrink-0 shadow-lg shadow-red-950/80">
-              <Skull className="w-10 h-10 sm:w-12 sm:h-12 text-red-400 animate-pulse" />
+          <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-red-900 to-black border-2 border-red-500/50 flex items-center justify-center shrink-0 shadow-lg shadow-red-950/80">
+              <Skull className="w-8 h-8 sm:w-10 sm:h-10 text-red-400 animate-pulse" />
             </div>
 
             <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-500/20 text-red-400 border border-red-500/30">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-red-500/20 text-red-400 border border-red-500/30">
                   Dungeon Raid Tier {battle.boss.level}
                 </span>
-                <span className="text-xs text-gray-400 font-semibold">
+                <span className="text-[11px] sm:text-xs text-gray-400 font-semibold">
                   Total Damage: {battle.damageDealt}
                 </span>
               </div>
 
-              <h2 className="font-cinzel text-2xl sm:text-3xl font-black text-gray-100 mt-1">
+              <h2 className="font-cinzel text-xl sm:text-2xl md:text-3xl font-black text-gray-100 mt-1">
                 {battle.boss.name}
               </h2>
               <p className="text-xs text-red-300/80 font-medium tracking-wide">
                 {battle.boss.title}
               </p>
-              <p className="text-xs text-gray-400 max-w-xl mt-2 leading-relaxed">
+              <p className="text-xs text-gray-400 max-w-xl mt-1.5 leading-relaxed">
                 {battle.boss.description}
               </p>
             </div>
           </div>
 
           {/* Defeated Boss Counter */}
-          <div className="flex items-center gap-3 p-3 rounded-xl bg-rpg-bg/80 border border-rpg-border/60">
-            <Trophy className="w-6 h-6 text-amber-400" />
+          <div className="w-full sm:w-auto flex items-center gap-3 p-3 rounded-xl bg-rpg-bg/80 border border-rpg-border/60">
+            <Trophy className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 shrink-0" />
             <div>
               <span className="text-[10px] text-gray-400 font-bold uppercase block">Raid Conquests</span>
-              <span className="font-cinzel text-base font-bold text-gray-100">
+              <span className="font-cinzel text-sm sm:text-base font-bold text-gray-100">
                 {defeatedCount} Bosses Vanquished
               </span>
             </div>

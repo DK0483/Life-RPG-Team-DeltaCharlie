@@ -260,28 +260,28 @@ export function ShopAndInventory() {
         </div>
 
         {/* Tab switch */}
-        <div className="flex items-center gap-1.5 p-1 bg-rpg-bg rounded-xl border border-rpg-border">
+        <div className="grid grid-cols-2 w-full sm:w-auto items-center gap-1.5 p-1 bg-rpg-bg rounded-xl border border-rpg-border">
           <button
             onClick={() => setSubTab("shop")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition ${
+            className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs font-bold transition ${
               subTab === "shop"
                 ? "bg-amber-500 text-gray-950 shadow-sm"
                 : "text-gray-400 hover:text-gray-200"
             }`}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            <span>Merchant Catalog</span>
+            <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Merchant Catalog</span>
           </button>
           <button
             onClick={() => setSubTab("inventory")}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition ${
+            className={`flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs font-bold transition ${
               subTab === "inventory"
                 ? "bg-amber-500 text-gray-950 shadow-sm"
                 : "text-gray-400 hover:text-gray-200"
             }`}
           >
-            <Backpack className="w-3.5 h-3.5" />
-            <span>Hero Backpack ({inventory.length})</span>
+            <Backpack className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">Backpack ({inventory.length})</span>
           </button>
         </div>
       </div>

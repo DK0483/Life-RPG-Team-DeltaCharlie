@@ -231,6 +231,18 @@ export function CharacterSheet() {
             </div>
           </div>
         </div>
+
+        {/* Mobile Accordion Toggle */}
+        <div className="sm:hidden mt-4 pt-3 border-t border-rpg-border/40">
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="w-full py-2 px-3 rounded-xl bg-rpg-bg hover:bg-rpg-cardHover border border-rpg-border text-xs font-bold text-gray-200 hover:text-amber-300 transition flex items-center justify-center gap-2 shadow-sm active:scale-98"
+          >
+            <span>{isExpanded ? "Hide Attributes & Artifacts" : "View Full Attributes & Artifacts"}</span>
+            {isExpanded ? <ChevronUp className="w-4 h-4 text-amber-400" /> : <ChevronDown className="w-4 h-4 text-amber-400" />}
+          </button>
+        </div>
       </div>
 
       {/* Attributes & Gear */}

@@ -87,7 +87,7 @@ export default function HomePage() {
         onOpenAuth={() => setIsAuthModalOpen(true)}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 pb-24 md:pb-8">
         {user && character ? (
           /* Authenticated Hero Dashboard */
           <div>
@@ -109,28 +109,28 @@ export default function HomePage() {
         </div>
         ) : (
           /* Unauthenticated Landing & Realm Showcase */
-          <div className="py-12 sm:py-20 flex flex-col items-center text-center max-w-4xl mx-auto">
+          <div className="py-8 sm:py-16 md:py-20 flex flex-col items-center text-center max-w-4xl mx-auto">
             {/* Hero Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs mb-6 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-xs mb-4 sm:mb-6 shadow-sm">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Full-Stack Web RPG Productivity Engine</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-cinzel text-4xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
+            <h1 className="font-cinzel text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-4 sm:mb-6">
               Transform Mundane Tasks Into An{" "}
               <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
                 Epic RPG Adventure
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-gray-300 max-w-2xl mb-10 leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-2xl mb-8 sm:mb-10 leading-relaxed px-2">
               Ditch dull to-do lists and procrastination. Level up real-world attributes, conquer
               deadly procrastination dungeon bosses, amass gold, and equip legendary artifacts.
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto mb-16">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto mb-12 sm:mb-16">
               <button
                 onClick={() => setIsAuthModalOpen(true)}
                 className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:brightness-110 text-gray-950 font-black text-sm shadow-xl shadow-amber-500/25 transition active:scale-95 flex items-center justify-center gap-2"
@@ -204,7 +204,7 @@ export default function HomePage() {
       {/* Floating Keyboard Shortcuts Trigger Button */}
       <button
         onClick={() => setIsHelpModalOpen(true)}
-        className="fixed bottom-4 right-4 z-30 p-2.5 rounded-full bg-rpg-card/90 hover:bg-rpg-cardHover border border-rpg-border/80 text-gray-400 hover:text-amber-300 shadow-xl backdrop-blur flex items-center gap-1.5 text-xs font-semibold transition"
+        className="fixed bottom-16 md:bottom-4 right-3 sm:right-4 z-30 p-2 sm:p-2.5 rounded-full bg-rpg-card/95 hover:bg-rpg-cardHover border border-rpg-border/80 text-gray-400 hover:text-amber-300 shadow-xl backdrop-blur flex items-center gap-1.5 text-xs font-semibold transition active:scale-95"
         title="Keyboard Navigation Shortcuts (?)"
       >
         <Keyboard className="w-4 h-4" />

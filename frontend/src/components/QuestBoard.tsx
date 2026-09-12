@@ -685,7 +685,7 @@ export function QuestBoard() {
                     </div>
 
                     {/* Action buttons */}
-                    <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-1 opacity-80 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={() => openEditModal(quest)}
                         className="p-1 rounded-md text-gray-400 hover:text-amber-300 hover:bg-rpg-cardHover transition"
@@ -704,11 +704,11 @@ export function QuestBoard() {
                   </div>
 
                   {/* Title & Description with complete trigger */}
-                  <div className="flex items-start gap-3 mt-1">
+                  <div className="flex items-start gap-2.5 mt-1">
                     <button
                       onClick={(e) => handleToggleComplete(quest, e)}
                       aria-label={quest.isCompleted ? "Unmark quest" : "Complete quest"}
-                      className="mt-0.5 flex-shrink-0 text-gray-400 hover:text-amber-400 transition-colors"
+                      className="min-w-[36px] min-h-[36px] -ml-1.5 -mt-1 flex items-center justify-center rounded-lg hover:bg-amber-500/10 active:scale-90 transition-all flex-shrink-0 text-gray-400 hover:text-amber-400"
                     >
                       {quest.isCompleted ? (
                         <CheckCircle2 className="w-5 h-5 text-emerald-400 fill-emerald-400/20" />
@@ -763,8 +763,8 @@ export function QuestBoard() {
 
       {/* Summon / Edit Quest Modal */}
       {isCreateModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-rpg-card border border-rpg-border/90 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-rpg-card border border-rpg-border/90 rounded-2xl max-w-lg w-full max-h-[88vh] overflow-y-auto p-4 sm:p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
             <button
               onClick={() => setIsCreateModalOpen(false)}
               className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover"
@@ -913,8 +913,8 @@ export function QuestBoard() {
 
       {/* Curated Quest Packs Modal */}
       {isPackModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-rpg-card border border-rpg-border/90 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col p-5 sm:p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+          <div className="bg-rpg-card border border-rpg-border/90 rounded-2xl max-w-2xl w-full max-h-[88vh] flex flex-col p-4 sm:p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
             <button
               onClick={() => setIsPackModalOpen(false)}
               className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition"

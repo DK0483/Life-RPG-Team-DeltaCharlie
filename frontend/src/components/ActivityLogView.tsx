@@ -81,10 +81,10 @@ export function ActivityLogView() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-rpg-card p-5 rounded-2xl border border-rpg-border/80 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="bg-rpg-card p-4 sm:p-5 rounded-2xl border border-rpg-border/80 shadow-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="font-cinzel text-2xl font-black text-gray-100 flex items-center gap-2.5">
-            <Scroll className="w-6 h-6 text-amber-400" />
+          <h1 className="font-cinzel text-xl sm:text-2xl font-black text-gray-100 flex items-center gap-2.5">
+            <Scroll className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 shrink-0" />
             <span>Hero Chronicle & Codex</span>
           </h1>
           <p className="text-xs text-gray-400 mt-1">
@@ -93,7 +93,7 @@ export function ActivityLogView() {
         </div>
 
         {/* Filter buttons */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
+        <div className="w-full sm:w-auto flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none">
           {[
             { key: "ALL", label: "All Deeds" },
             { key: "QUEST_COMPLETED", label: "Quests" },

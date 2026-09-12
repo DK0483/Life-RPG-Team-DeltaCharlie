@@ -73,11 +73,11 @@ export function GuidanceBanner({ onNavigate, activeTab }: GuidanceBannerProps) {
   ];
 
   return (
-    <div className="mb-6 relative rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-950/40 via-rpg-card to-rpg-card p-5 sm:p-6 shadow-xl shadow-amber-500/5 animate-in fade-in duration-300">
+    <div className="mb-4 sm:mb-6 relative rounded-2xl border border-amber-500/40 bg-gradient-to-br from-amber-950/40 via-rpg-card to-rpg-card p-4 sm:p-6 shadow-xl shadow-amber-500/5 animate-in fade-in duration-300">
       {/* Dismiss Button */}
       <button
         onClick={handleDismiss}
-        className="absolute top-4 right-4 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition flex items-center gap-1 text-xs"
+        className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-rpg-cardHover transition flex items-center gap-1 text-xs"
         title="Dismiss Guild Guidance"
       >
         <span className="hidden sm:inline font-sans text-[11px] text-gray-400">Dismiss</span>
@@ -85,12 +85,12 @@ export function GuidanceBanner({ onNavigate, activeTab }: GuidanceBannerProps) {
       </button>
 
       {/* Header Info */}
-      <div className="max-w-2xl">
+      <div className="max-w-2xl pr-8 sm:pr-0">
         <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[11px] font-bold mb-2">
           <Sparkles className="w-3 h-3" />
           <span>First-Time Adventurer Guidance</span>
         </div>
-        <h2 className="font-cinzel text-xl sm:text-2xl font-black text-gray-100 flex items-center gap-2">
+        <h2 className="font-cinzel text-lg sm:text-2xl font-black text-gray-100 flex items-center gap-2">
           <span>Welcome to the Guildhall, Adventurer!</span>
         </h2>
         <p className="text-xs sm:text-sm text-gray-300 mt-1 leading-relaxed">
@@ -99,7 +99,7 @@ export function GuidanceBanner({ onNavigate, activeTab }: GuidanceBannerProps) {
       </div>
 
       {/* 3 Interactive Step Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-3.5 mt-4 sm:mt-5">
         {steps.map((step) => {
           const Icon = step.icon;
           const isActive = activeTab === step.id;
