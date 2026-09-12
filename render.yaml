@@ -1,0 +1,18 @@
+services:
+  # Life RPG Express + SQLite Backend API
+  - type: web
+    name: life-rpg-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate && npx prisma db push && node scripts/seed.mjs && npx tsc
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://localhost:3000
