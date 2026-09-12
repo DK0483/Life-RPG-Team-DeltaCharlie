@@ -102,3 +102,25 @@ body {
 .pulse-mana {
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
 }
+
+/* Atmospheric Themes */
+.theme-cyberpunk-neon-grid {
+  --background: #060814;
+  background-image: 
+    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(6, 182, 212, 0.15), transparent),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(236, 72, 153, 0.1), transparent);
+}
+
+.theme-crimson-abyss-dungeon {
+  --background: #0F0508;
+  background-image: 
+    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(220, 38, 38, 0.18), transparent),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(185, 28, 28, 0.1), transparent);
+}
+
+.theme-cozy-tavern-hearth {
+  --background: #0E0906;
+  background-image: 
+    radial-gradient(ellipse 80% 80% at 50% -20%, rgba(245, 158, 11, 0.15), transparent),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(217, 119, 6, 0.08), transparent);
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Navbar } from "@/components/Navbar";
 import { CharacterSheet } from "@/components/CharacterSheet";
@@ -21,13 +21,46 @@ import {
   Trophy,
   Sparkles,
   ArrowRight,
-  CheckCircle2,
+  Keyboard,
+  X,
 } from "lucide-react";
 
 export default function HomePage() {
-  const { user, character, isLoading } = useAuth();
+  const { user, character, isLoading, toggleSound } = useAuth();
   const [activeTab, setActiveTab] = useState<"quests" | "shop" | "boss" | "logs">("quests");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
+  // Global keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept when typing in an input or textarea
+      const target = e.target as HTMLElement;
+      if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT") {
+        return;
+      }
+
+      if (e.key === "1") {
+        setActiveTab("quests");
+      } else if (e.key === "2") {
+        setActiveTab("shop");
+      } else if (e.key === "3") {
+        setActiveTab("boss");
+      } else if (e.key === "4") {
+        setActiveTab("logs");
+      } else if (e.key === "m" || e.key === "M") {
+        toggleSound();
+      } else if (e.key === "?") {
+        setIsHelpModalOpen((prev) => !prev);
+      } else if (e.key === "Escape") {
+        setIsHelpModalOpen(false);
+        setIsAuthModalOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleSound]);
 
   if (isLoading) {
     return (
@@ -42,8 +75,10 @@ export default function HomePage() {
     );
   }
 
+  const themeClass = character?.activeTheme ? `theme-${character.activeTheme}` : "";
+
   return (
-    <div className="min-h-screen bg-rpg-bg text-gray-100 flex flex-col">
+    <div className={`min-h-screen bg-rpg-bg text-gray-100 flex flex-col transition-colors duration-500 ${themeClass}`}>
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -160,6 +195,65 @@ export default function HomePage() {
           </div>
         )}
       </main>
+
+      {/* Floating Keyboard Shortcuts Trigger Button */}
+      <button
+        onClick={() => setIsHelpModalOpen(true)}
+        className="fixed bottom-4 right-4 z-30 p-2.5 rounded-full bg-rpg-card/90 hover:bg-rpg-cardHover border border-rpg-border/80 text-gray-400 hover:text-amber-300 shadow-xl backdrop-blur flex items-center gap-1.5 text-xs font-semibold transition"
+        title="Keyboard Navigation Shortcuts (?)"
+      >
+        <Keyboard className="w-4 h-4" />
+        <span className="hidden sm:inline">Shortcuts</span>
+      </button>
+
+      {/* Keyboard Shortcuts Cheatsheet Modal */}
+      {isHelpModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-rpg-card border border-rpg-border rounded-2xl max-w-sm w-full p-5 shadow-2xl relative animate-in zoom-in-95">
+            <button
+              onClick={() => setIsHelpModalOpen(false)}
+              className="absolute top-4 right-4 p-1 rounded-lg text-gray-400 hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            <h3 className="font-cinzel text-base font-bold text-gray-100 flex items-center gap-2 mb-1">
+              <Keyboard className="w-4 h-4 text-amber-400" />
+              <span>Keyboard Navigation</span>
+            </h3>
+            <p className="text-[11px] text-gray-400 mb-4">
+              Control the guildhall hands-free via tactile keystrokes.
+            </p>
+
+            <div className="space-y-2 text-xs">
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Quest Board</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">1</kbd>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Armory & Merchant</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">2</kbd>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Dungeon Boss Raid</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">3</kbd>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Hero Chronicle Codex</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">4</kbd>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Toggle Sound Mute</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">M</kbd>
+              </div>
+              <div className="flex items-center justify-between p-2 rounded-lg bg-rpg-bg border border-rpg-border">
+                <span className="text-gray-300">Close Active Modal</span>
+                <kbd className="px-2 py-0.5 rounded bg-gray-800 text-amber-400 font-mono text-xs font-bold border border-gray-700">Esc</kbd>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Level Up Fanfare Modal */}
       <LevelUpModal />
