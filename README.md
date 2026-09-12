@@ -1,24 +1,45 @@
 # ⚔️ Life RPG — Realm of Progression
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-life--rpg.vercel.app-gold?style=for-the-badge&logo=vercel)](https://life-rpg-eight-teal.vercel.app/)
+[![Backend Status](https://img.shields.io/badge/Backend%20API-Render.com-46E3B7?style=for-the-badge&logo=render)](https://life-rpg-team-deltacharlie.onrender.com/api/health)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2.25-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![Express.js](https://img.shields.io/badge/Express-4.21-white?style=for-the-badge&logo=express)](https://expressjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
 [![SQLite](https://img.shields.io/badge/SQLite-Zero--Docker-003B57?style=for-the-badge&logo=sqlite)](https://sqlite.org/)
 
-A full-stack, deeply immersive **Life RPG** web application that bridges the delayed gratification problem of real-world productivity by translating mundane habits and tasks into a tactile fantasy role-playing adventure.
-
-Unlike generic productivity dashboards or unstyled CRUD apps, **Life RPG** features a handcrafted dark-fantasy aesthetic, zero-dependency synthesized audio feedback via the Web Audio API, non-linear mathematical progression curves, equipment paperdolls, an active merchant economy, and world boss raids directly damaged through completed real-world endeavors.
+> **Transform mundane habits and tasks into an epic fantasy RPG adventure.**
+> Complete quests, earn gold & XP, upgrade character attributes, equip rare artifacts, and strike down formidable world bosses!
 
 ---
 
-## 🌟 Key Highlights & Design Philosophy
+## 🌐 Live Production Deployments
 
-- **Alive & Tactile Micro-Interactions**: Real-time floating combat text (`+60 XP`, `+25 Gold`, `-45 Boss DMG!`), celebratory particle cannons (`canvas-confetti`), glowing vital bars, and spring animations.
-- **Synthesized Web Audio Engine**: Pure browser Web Audio API oscillator synthesis—no missing MP3 files or external audio assets. Features crystal quest completion chimes, triumphant multi-chord level-up fanfares, metallic coin clinks, boss strike slashes, and equip clicks with a persistent master mute toggle.
-- **Relational Integrity Without Docker**: Powered by an embedded SQLite database using Prisma ORM. Zero Docker containers or external daemon processes required. Provides full ACID transactions, foreign keys, and relational schema migrations.
-- **Secure Authentication & Multi-Tenancy**: Built-in bcryptjs password hashing and JWT sessions (via httpOnly cookies). Strict tenant isolation ensures users can only read or mutate their own character data, quests, and inventory.
-- **Zero Fake Persistence**: Every quest completion, item purchase, stat increase, and streak update persists directly to the database and survives browser reloads.
+| Component | Platform | URL | Status |
+| :--- | :--- | :--- | :--- |
+| **Frontend Web App** | **Vercel** (Global Edge CDN) | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)** | 🟢 **Live & Operational** |
+| **Backend REST API** | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)** | 🟢 **Live & Operational** |
+| **API Health Check** | **Render / Vercel Proxy** | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)** |
+| **Source Repository** | **GitHub** | **[DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)** | 🟢 **Main** |
+
+---
+
+## 🌟 Key Highlights & Innovations
+
+- 🛡️ **Dynamic RPG Classes & Class Avatars**: Choose between **Warrior**, **Mage**, **Rogue**, or **Paladin** with custom glowing animated emblems, dynamic titles, and unique stat specializations.
+- 📊 **Interactive 5-Axis Attribute Radar**: Real-time geometric pentagon radar dynamically plotting your real-world progression across **Strength**, **Intellect**, **Vitality**, **Agility**, and **Charisma**.
+- 📦 **1-Click Curated Quest Packs**: Instant onboarding with curated habit bundles:
+  - 🏋️ *Iron Discipline* (Fitness Starter)
+  - 🧠 *Scholar's Codex* (Deep Work & Study)
+  - 🌿 *Monk's Serenity* (Mindful Living)
+  - 💻 *Code Architect* (Full-Stack Engineer)
+- 🧭 **Interactive Adventurer Guidance Banner**: Dynamic 3-step beginner tutorial celebrating quest creation, habit completion, and boss attacks with celebratory rewards.
+- 📱 **Mobile-First Touch Architecture**: Fully responsive UI with a native-feeling bottom navigation dock, swipe-friendly cards, and touch-optimized action buttons.
+- 🎵 **Synthesized Web Audio Engine**: Zero MP3 asset dependencies. Built with browser-native Web Audio API frequency oscillators delivering crystal completion chimes, triumphant level-up fanfares, coin clinks, and combat strikes with a master mute toggle.
+- ⚔️ **World Boss Raids**: Attack towering dungeon fiends (*The Procrastination Behemoth*, *The Chimera of Distractions*, *The Burnout Dragon*) whose HP depletes with every completed habit.
+- 🏪 **Merchant Armory & Inventory Paperdoll**: Earn gold to purchase weapons, armor, accessories, stamina potions, and custom dashboard themes.
+- 🔒 **Full Relational Security & Multi-Tenancy**: Built with Prisma ORM, SQLite, bcrypt password hashing, and secure JWT authentication. Zero fake local state—every action persists to the database.
 
 ---
 
@@ -76,144 +97,149 @@ Quests reward XP, Gold, and attribute points scaled to difficulty:
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Modern Full-Stack Tech Stack
 
-- **Frontend**: Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons, Canvas Confetti
-- **Audio**: Custom Web Audio API synthesizer (`src/lib/sound.ts`)
-- **Backend**: Next.js API Route handlers (`src/app/api/*`)
-- **Database & ORM**: SQLite (`dev.db`) + Prisma ORM
+- **Frontend Client**: Next.js 14 (App Router), React 18, TypeScript, Tailwind CSS, Lucide Icons, Canvas Confetti
+- **Backend API Server**: Express.js 4.21, Node.js, TypeScript, Cookie-Parser, CORS
+- **Audio Engine**: Custom procedural Web Audio API synthesizer (`frontend/src/lib/sound.ts`)
+- **Database & ORM**: SQLite (`dev.db`) + Prisma ORM 5.22 (Zero Docker required)
 - **Authentication**: JWT (`jsonwebtoken`) + Password hashing (`bcryptjs`) + `httpOnly` secure cookies
+- **Cloud Infrastructure**: Vercel (Edge CDN) + Render (Node.js Web Service)
 
 ---
 
-## 🚀 Quickstart & Setup Guide
+## 🏗️ System Architecture
 
-### Prerequisites
-- **Node.js**: v18.17.0+ (Tested on Node v22)
-- **npm**: v9+ (Included with Node)
-- **No Docker required!**
+```mermaid
+graph TD
+    Client["📱 Client Browser / Mobile Web\n(Next.js 14 Responsive PWA)"]
+    
+    subgraph Vercel ["Vercel Global Edge CDN"]
+        EdgeProxy["Edge Reverse Proxy\n/api/* -> Render Backend"]
+        ReactApp["Next.js App Router (SSR + Client)\n- Tailwind Dark-Fantasy Design\n- Web Audio Synthesizer\n- Dynamic SVG Attribute Radar\n- Class Avatars & Confetti"]
+    end
 
-## 📂 Project Architecture
+    subgraph Render ["Render Cloud Web Service"]
+        ExpressApp["Express.js REST API Server\n- JWT Session & Cookie Auth\n- Level & XP Math Engine\n- Boss Battle & Raid Logic\n- Seed & Catalog Handlers"]
+        PrismaORM["Prisma 5.22 ORM"]
+        Database[("SQLite Database\n(file:./dev.db)\nZero Docker Required")]
+    end
 
-The codebase is cleanly divided into two dedicated standalone directories:
+    Client -->|HTTPS| ReactApp
+    ReactApp --> EdgeProxy
+    EdgeProxy -->|Encrypted Proxy| ExpressApp
+    ExpressApp --> PrismaORM
+    PrismaORM --> Database
+```
+
+---
+
+## 📂 Monorepo Directory Structure
+
+The codebase is cleanly separated into dedicated frontend and backend layers:
 
 ```text
 LIFE RPG/
-├── backend/                       # Dedicated Server & Database Layer (:5000)
+├── backend/                       # Dedicated Express & Prisma API (:5000)
 │   ├── prisma/
-│   │   ├── schema.prisma          # SQLite Relational Database Models
-│   │   └── dev.db                 # Persistent SQLite Database (Zero Docker)
+│   │   ├── schema.prisma          # Relational database models (User, Quest, Item, Boss, Logs)
+│   │   └── dev.db                 # Zero-Docker SQLite database
 │   ├── src/
-│   │   ├── routes/                # Express API routes (auth, quests, shop, boss, logs)
-│   │   ├── lib/                   # RPG progression engine, auth utils, Prisma client
+│   │   ├── routes/                # REST endpoints (auth, quests, shop, boss, logs)
+│   │   ├── lib/                   # RPG engine, JWT auth utilities, Prisma client
 │   │   └── server.ts              # Express server with CORS & cookie parsing
 │   ├── scripts/
-│   │   ├── seed.mjs               # Catalog and world boss seeder
+│   │   ├── seed.mjs               # Seed script with catalog items & world bosses
 │   │   └── verify-integration.mjs # Automated full-stack integration test suite
 │   ├── package.json
-│   ├── tsconfig.json
-│   └── .env.example
+│   └── tsconfig.json
 │
-├── frontend/                      # Dedicated Client & UI Layer (:3000)
+├── frontend/                      # Dedicated Next.js 14 Client (:3000)
 │   ├── src/
-│   │   ├── app/                   # Next.js App Router pages, themes, error boundaries
-│   │   ├── components/            # CharacterSheet, QuestBoard, Shop, BossArena, Codex
-│   │   ├── context/               # AuthContext state provider
-│   │   └── lib/                   # Web Audio API sound synthesizer
-│   ├── next.config.mjs            # Reverse proxy rewrites routing /api/* to :5000
-│   ├── package.json
+│   │   ├── app/                   # App Router pages, layout, error boundaries
+│   │   ├── components/            # CharacterSheet, AttributeRadar, ClassAvatar,
+│   │   │                          # QuestBoard, BossArena, Shop, GuidanceBanner
+│   │   ├── context/               # AuthContext state management
+│   │   └── lib/                   # Web Audio API procedural sound synthesizer
+│   ├── next.config.mjs            # Production reverse proxy rewrites to backend
 │   ├── tailwind.config.ts
-│   ├── tsconfig.json
-│   └── .env.example
+│   └── package.json
 │
-└── package.json                   # Root orchestrator running both concurrently
+├── render.yaml                    # Infrastructure-as-Code Blueprint for Render
+├── DEPLOYMENT.md                  # Complete cloud deployment guide
+└── package.json                   # Root orchestrator script
 ```
 
 ---
 
-## 🚀 Quickstart & Setup Guide
+## 🚀 Local Development Setup
 
 ### Prerequisites
-- **Node.js**: v18.17.0+ (Tested on Node v22)
-- **npm**: v9+ (Included with Node)
-- **No Docker required!**
+- **Node.js**: v18.17.0+ (Tested up to Node v22)
+- **npm**: v9+ (Bundled with Node)
+- **Zero Docker required!**
 
-### 1. Clone & Install Dependencies
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/DK0483/Life-RPG-Team-DeltaCharlie.git
 cd "Life-RPG-Team-DeltaCharlie"
+```
+
+### 2. Install Dependencies
+```bash
 npm run install:all
 ```
-*(Or `npm install` inside both `frontend/` and `backend/`)*
-
-### 2. Configure Environment Variables
-Copy `.env.example` to `.env` in both folders:
-```bash
-# Backend
-Copy-Item backend/.env.example backend/.env
-
-# Frontend
-Copy-Item frontend/.env.example frontend/.env
-```
+*(Or run `npm install` inside both `frontend/` and `backend/`)*
 
 ### 3. Initialize & Seed Database
 ```bash
 npm run seed
 ```
 
-### 4. Launch Application (Runs Both Backend & Frontend)
+### 4. Start Development Servers
 ```bash
 npm run dev
 ```
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Frontend App**: [http://localhost:3000](http://localhost:3000)
 - **Backend API**: [http://localhost:5000](http://localhost:5000)
+- **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
 
 ---
 
-## 🚢 Production Build & Deployment
+## 🚢 Live Cloud Deployment Architecture
 
-To verify the production build locally:
-```bash
-npm run build
-npm start
-```
+Life RPG is deployed with zero infrastructure costs using modern cloud edge architecture:
 
-### Deploying to Cloud Providers (Vercel, Render, Railway)
+1. **Backend on Render**:
+   - Web Service running continuous Express.js + SQLite database.
+   - Deployed via Render Blueprint or manual Web Service at:
+     `https://life-rpg-team-deltacharlie.onrender.com`
+2. **Frontend on Vercel**:
+   - Next.js 14 hosted on Vercel's global edge network.
+   - Transparent serverless reverse-proxy rewrite rule in `next.config.mjs` forwards all `/api/*` requests to Render, bypassing third-party cookie restrictions:
+     `https://life-rpg-eight-teal.vercel.app`
 
-#### Vercel Deployment
-1. Push your repository to GitHub.
-2. Import the repository into **Vercel**.
-3. Under Environment Variables, configure:
-   - `JWT_SECRET`: A random secure 32+ character string.
-   - `DATABASE_URL`: For standard Vercel serverless deployments, you can use **Prisma Postgres**, **Supabase**, or **Turso / LibSQL** by replacing `provider = "sqlite"` in `prisma/schema.prisma` with your target provider.
-4. Set Build Command: `npm run build` (which automatically runs `prisma generate`).
-
-#### Render / Railway Deployment (Self-Hosted Node + SQLite)
-1. Deploy as a Web Service.
-2. Set Build Command: `npm install && npx prisma db push && npm run seed && npm run build`
-3. Set Start Command: `npm start`
-4. Mount a persistent disk to `/app/prisma` to keep `dev.db` persistent across redeployments!
+*(Full instructions available in [DEPLOYMENT.md](file:///c:/Users/DHYEY%20KABRA/OneDrive/Desktop/LIFE%20RPG/DEPLOYMENT.md))*
 
 ---
 
-## 🎬 90–180 Second Illustration Video Script
+## 🎬 2-Minute Hackathon Demo Script
 
-If recording the required demonstration video, follow this optimal 2-minute walkthrough checklist:
-
-| Timestamp | Action | Key Demonstration Point |
-|---|---|---|
-| **0:00 - 0:25** | Open home page $\rightarrow$ Click **"Forge Your Hero"** $\rightarrow$ Choose Class (e.g. *Warrior* or *Mage*) $\rightarrow$ Submit registration. | Show smooth user creation, password hashing, and starter quest population. |
-| **0:25 - 0:50** | View Character Sheet $\rightarrow$ Click **"Summon New Quest"** $\rightarrow$ Add *"Master TypeScript Generics"* (Intellect, Medium). | Demonstrate full CRUD, form validation, and instant quest rendering. |
-| **0:50 - 1:15** | Click the quest checkbox to complete it. | Highlight synthesized crystal chime, canvas confetti burst, floating combat text (`+60 XP`, `+25 Gold`), and HP strike on the Dungeon Boss. |
-| **1:15 - 1:35** | Complete remaining starter quests to cross the XP threshold. | Trigger the celebratory **Level Up fanfare modal**, showing visual stats ascension and HP/Mana replenishment. |
-| **1:35 - 1:55** | Navigate to **Armory & Shop** $\rightarrow$ Buy an Iron Sword $\rightarrow$ Open **Hero Backpack** $\rightarrow$ Equip the sword $\rightarrow$ Verify character Strength increases. | Demonstrate merchant economy, inventory management, and paperdoll equip slots. |
-| **1:55 - 2:10** | **Hard Refresh the Browser (`Ctrl + F5`)**. | **Proves 100% database persistence**: character level, equipped items, gold, and completed quest states persist directly from SQLite. |
+| Timestamp | Action | Key Feature Demonstrated |
+| :---: | :--- | :--- |
+| **0:00 - 0:25** | Open [Live Site](https://life-rpg-eight-teal.vercel.app/) $\rightarrow$ Click **"Sign Up"** $\rightarrow$ Choose Class (*Warrior* / *Mage*) $\rightarrow$ Create hero. | Secure JWT registration, dynamic Class Avatar, starter quest population. |
+| **0:25 - 0:45** | Click **"1-Click Add"** on the *Code Architect* Curated Quest Pack. | Batch quest generation with difficulty ratings and attribute category tags. |
+| **0:45 - 1:05** | Check off a quest to mark it completed. | Synthesized audio chime, confetti cannon, floating combat text (`+60 XP`), and physical damage strike on the World Boss. |
+| **1:05 - 1:25** | Observe the **Attribute Radar** expanding and inspect the **Guidance Banner** completing steps. | Dynamic SVG visualization and real-time attribute progression. |
+| **1:25 - 1:45** | Complete remaining tasks to level up $\rightarrow$ Open **Armory & Shop** $\rightarrow$ Purchase an Iron Sword $\rightarrow$ Equip in **Hero Backpack**. | Level-up fanfare modal, merchant gold economy, and paperdoll stat bonuses. |
+| **1:45 - 2:00** | Switch to Mobile view or inspect responsive layout. | Mobile bottom navigation dock, touch-optimized card layout, and 100% database persistence across reloads. |
 
 ---
 
-## 📜 Repository Commit History
-This project strictly adheres to clean chronological commits:
-1. `feat(core)`: Project scaffolding, relational SQLite schema, and catalog seed script.
-2. `feat(backend)`: Authentication, RPG progression engine, synthesized audio engine, and API routes.
-3. `feat(ui)`: Responsive dark-fantasy interface, quest board CRUD, merchant shop, boss raids, and character sheets.
-4. `docs`: Setup documentation, environment templates, deployment guide, and illustration video script.
+## 👥 Team DeltaCharlie
+
+Built with ❤️ for the Hackathon by **Team DeltaCharlie**.
+
+- **Repository**: [https://github.com/DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)
+- **Live Demo**: [https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)
+- **Backend API**: [https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)
