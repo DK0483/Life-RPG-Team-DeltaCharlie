@@ -93,39 +93,80 @@ Quests reward XP, Gold, and attribute points scaled to difficulty:
 - **npm**: v9+ (Included with Node)
 - **No Docker required!**
 
+## 📂 Project Architecture
+
+The codebase is cleanly divided into two dedicated standalone directories:
+
+```text
+LIFE RPG/
+├── backend/                       # Dedicated Server & Database Layer (:5000)
+│   ├── prisma/
+│   │   ├── schema.prisma          # SQLite Relational Database Models
+│   │   └── dev.db                 # Persistent SQLite Database (Zero Docker)
+│   ├── src/
+│   │   ├── routes/                # Express API routes (auth, quests, shop, boss, logs)
+│   │   ├── lib/                   # RPG progression engine, auth utils, Prisma client
+│   │   └── server.ts              # Express server with CORS & cookie parsing
+│   ├── scripts/
+│   │   ├── seed.mjs               # Catalog and world boss seeder
+│   │   └── verify-integration.mjs # Automated full-stack integration test suite
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
+│
+├── frontend/                      # Dedicated Client & UI Layer (:3000)
+│   ├── src/
+│   │   ├── app/                   # Next.js App Router pages, themes, error boundaries
+│   │   ├── components/            # CharacterSheet, QuestBoard, Shop, BossArena, Codex
+│   │   ├── context/               # AuthContext state provider
+│   │   └── lib/                   # Web Audio API sound synthesizer
+│   ├── next.config.mjs            # Reverse proxy rewrites routing /api/* to :5000
+│   ├── package.json
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   └── .env.example
+│
+└── package.json                   # Root orchestrator running both concurrently
+```
+
+---
+
+## 🚀 Quickstart & Setup Guide
+
+### Prerequisites
+- **Node.js**: v18.17.0+ (Tested on Node v22)
+- **npm**: v9+ (Included with Node)
+- **No Docker required!**
+
 ### 1. Clone & Install Dependencies
 ```bash
-git clone <your-repo-url>
-cd "LIFE RPG"
-npm install
+git clone https://github.com/DK0483/Life-RPG-Team-DeltaCharlie.git
+cd "Life-RPG-Team-DeltaCharlie"
+npm run install:all
 ```
+*(Or `npm install` inside both `frontend/` and `backend/`)*
 
 ### 2. Configure Environment Variables
-Copy the template file `.env.example` into `.env`:
+Copy `.env.example` to `.env` in both folders:
 ```bash
-cp .env.example .env
-```
-*(On Windows PowerShell: `Copy-Item .env.example .env`)*
+# Backend
+Copy-Item backend/.env.example backend/.env
 
-The default `.env` contents:
-```env
-DATABASE_URL="file:./dev.db"
-JWT_SECRET="life-rpg-mystic-secret-token-key-super-secure-change-in-prod-2025"
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
+# Frontend
+Copy-Item frontend/.env.example frontend/.env
 ```
 
 ### 3. Initialize & Seed Database
-Run Prisma migrations and populate the shop catalog and world bosses:
 ```bash
-npx prisma db push
 npm run seed
 ```
 
-### 4. Launch Development Server
+### 4. Launch Application (Runs Both Backend & Frontend)
 ```bash
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+- **Frontend**: [http://localhost:3000](http://localhost:3000)
+- **Backend API**: [http://localhost:5000](http://localhost:5000)
 
 ---
 

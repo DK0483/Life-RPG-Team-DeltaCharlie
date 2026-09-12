@@ -1,19 +1,33 @@
 # Node modules
 node_modules/
-.pnp
-.pnp.js
+backend/node_modules/
+frontend/node_modules/
 
 # Next.js build output
 .next/
+frontend/.next/
 out/
+frontend/out/
+
+# TypeScript build output
+dist/
+backend/dist/
 
 # Prisma & SQLite
+*.db
+*.db-journal
 prisma/*.db
 prisma/*.db-journal
+backend/prisma/*.db
+backend/prisma/*.db-journal
 
 # Environment variables
 .env
 .env*.local
+backend/.env
+backend/.env*.local
+frontend/.env
+frontend/.env*.local
 
 # Debug logs
 npm-debug.log*
