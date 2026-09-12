@@ -2,12 +2,11 @@
 
 ## 🌐 Live Production Deployments
 
-| Component             | Platform                      | URL                                                                                                        | Status                    |
-| :-------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------ |
-| **Frontend Web App**  | **Vercel** (Global Edge CDN)  | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)**                     | 🟢 **Live & Operational** |
-| **Backend REST API**  | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)**   | 🟢 **Live & Operational** |
-| **API Health Check**  | **Render / Vercel Proxy**     | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)**     |
-| **Source Repository** | **GitHub**                    | **[DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)**              | 🟢 **Main**               |
+| Component            | Platform                      | URL                                                                                                        | Status                    |
+| :------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------ |
+| **Frontend Web App** | **Vercel** (Global Edge CDN)  | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)**                     | 🟢 **Live & Operational** |
+| **Backend REST API** | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)**   | 🟢 **Live & Operational** |
+| **API Health Check** | **Render / Vercel Proxy**     | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)**     |
 
 ---
 
