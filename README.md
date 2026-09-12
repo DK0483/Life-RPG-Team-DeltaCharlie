@@ -1,27 +1,13 @@
 # ⚔️ Life RPG — Realm of Progression
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-life--rpg.vercel.app-gold?style=for-the-badge&logo=vercel)](https://life-rpg-eight-teal.vercel.app/)
-[![Backend Status](https://img.shields.io/badge/Backend%20API-Render.com-46E3B7?style=for-the-badge&logo=render)](https://life-rpg-team-deltacharlie.onrender.com/api/health)
-[![Next.js](https://img.shields.io/badge/Next.js-14.2.25-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Express.js](https://img.shields.io/badge/Express-4.21-white?style=for-the-badge&logo=express)](https://expressjs.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
-[![SQLite](https://img.shields.io/badge/SQLite-Zero--Docker-003B57?style=for-the-badge&logo=sqlite)](https://sqlite.org/)
-
-> **Transform mundane habits and tasks into an epic fantasy RPG adventure.**
-> Complete quests, earn gold & XP, upgrade character attributes, equip rare artifacts, and strike down formidable world bosses!
-
----
-
 ## 🌐 Live Production Deployments
 
-| Component | Platform | URL | Status |
-| :--- | :--- | :--- | :--- |
-| **Frontend Web App** | **Vercel** (Global Edge CDN) | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)** | 🟢 **Live & Operational** |
-| **Backend REST API** | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)** | 🟢 **Live & Operational** |
-| **API Health Check** | **Render / Vercel Proxy** | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)** |
-| **Source Repository** | **GitHub** | **[DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)** | 🟢 **Main** |
+| Component             | Platform                      | URL                                                                                                        | Status                    |
+| :-------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------------------- | :------------------------ |
+| **Frontend Web App**  | **Vercel** (Global Edge CDN)  | **[https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)**                     | 🟢 **Live & Operational** |
+| **Backend REST API**  | **Render** (Node.js + Prisma) | **[https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)**   | 🟢 **Live & Operational** |
+| **API Health Check**  | **Render / Vercel Proxy**     | **[https://life-rpg-eight-teal.vercel.app/api/health](https://life-rpg-eight-teal.vercel.app/api/health)** | 🟢 **Healthy (`ok`)**     |
+| **Source Repository** | **GitHub**                    | **[DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)**              | 🟢 **Main**               |
 
 ---
 
@@ -30,14 +16,14 @@
 - 🛡️ **Dynamic RPG Classes & Class Avatars**: Choose between **Warrior**, **Mage**, **Rogue**, or **Paladin** with custom glowing animated emblems, dynamic titles, and unique stat specializations.
 - 📊 **Interactive 5-Axis Attribute Radar**: Real-time geometric pentagon radar dynamically plotting your real-world progression across **Strength**, **Intellect**, **Vitality**, **Agility**, and **Charisma**.
 - 📦 **1-Click Curated Quest Packs**: Instant onboarding with curated habit bundles:
-  - 🏋️ *Iron Discipline* (Fitness Starter)
-  - 🧠 *Scholar's Codex* (Deep Work & Study)
-  - 🌿 *Monk's Serenity* (Mindful Living)
-  - 💻 *Code Architect* (Full-Stack Engineer)
+  - 🏋️ _Iron Discipline_ (Fitness Starter)
+  - 🧠 _Scholar's Codex_ (Deep Work & Study)
+  - 🌿 _Monk's Serenity_ (Mindful Living)
+  - 💻 _Code Architect_ (Full-Stack Engineer)
 - 🧭 **Interactive Adventurer Guidance Banner**: Dynamic 3-step beginner tutorial celebrating quest creation, habit completion, and boss attacks with celebratory rewards.
 - 📱 **Mobile-First Touch Architecture**: Fully responsive UI with a native-feeling bottom navigation dock, swipe-friendly cards, and touch-optimized action buttons.
 - 🎵 **Synthesized Web Audio Engine**: Zero MP3 asset dependencies. Built with browser-native Web Audio API frequency oscillators delivering crystal completion chimes, triumphant level-up fanfares, coin clinks, and combat strikes with a master mute toggle.
-- ⚔️ **World Boss Raids**: Attack towering dungeon fiends (*The Procrastination Behemoth*, *The Chimera of Distractions*, *The Burnout Dragon*) whose HP depletes with every completed habit.
+- ⚔️ **World Boss Raids**: Attack towering dungeon fiends (_The Procrastination Behemoth_, _The Chimera of Distractions_, _The Burnout Dragon_) whose HP depletes with every completed habit.
 - 🏪 **Merchant Armory & Inventory Paperdoll**: Earn gold to purchase weapons, armor, accessories, stamina potions, and custom dashboard themes.
 - 🔒 **Full Relational Security & Multi-Tenancy**: Built with Prisma ORM, SQLite, bcrypt password hashing, and secure JWT authentication. Zero fake local state—every action persists to the database.
 
@@ -46,37 +32,42 @@
 ## 🎮 The RPG Progression Engine
 
 ### 1. Non-Linear Leveling Curve
+
 Progression uses an exponential growth formula where each subsequent level requires significantly more effort:
 
 $$\text{XP Required}(L) = \lfloor 100 \times L^{1.55} \rfloor$$
 
-| Level | XP to Next Level | Total Cumulative XP |
-|---|---|---|
-| **Level 1** | 100 XP | 100 XP |
-| **Level 2** | 292 XP | 392 XP |
-| **Level 3** | 549 XP | 941 XP |
-| **Level 4** | 860 XP | 1,801 XP |
-| **Level 5** | 1,222 XP | 3,023 XP |
-| **Level 10** | 3,548 XP | 15,280 XP |
+| Level        | XP to Next Level | Total Cumulative XP |
+| ------------ | ---------------- | ------------------- |
+| **Level 1**  | 100 XP           | 100 XP              |
+| **Level 2**  | 292 XP           | 392 XP              |
+| **Level 3**  | 549 XP           | 941 XP              |
+| **Level 4**  | 860 XP           | 1,801 XP            |
+| **Level 5**  | 1,222 XP         | 3,023 XP            |
+| **Level 10** | 3,548 XP         | 15,280 XP           |
 
 Upon leveling up, the adventurer receives:
+
 - Full Hit Points (HP) and Mana Points (MP) restoration.
 - Permanent increases to maximum vital pools (+15 Max HP, +10 Max MP per level).
 - Celebratory fanfare modal with golden ray particle burst.
 
 ### 2. Attribute-Driven Task Categorization
+
 Real-world activities directly cultivate specific character attributes:
 
-| Realm Category | Governing Attribute | Real-World Habits |
-|---|---|---|
-| 🏋️ **Strength** | `strength` | Gym workouts, weightlifting, pushups, running, martial arts |
-| 🔮 **Intellect** | `intellect` | Coding, reading, technical architecture, study sessions |
-| 🌿 **Vitality** | `vitality` | 8 hours of sleep, drinking 2L water, healthy meals, posture |
-| ⚡ **Agility** | `agility` | Fast chores, desk decluttering, swift errands, inbox zero |
-| ✨ **Charisma** | `charisma` | Networking, public speaking, meditation, journaling, empathy |
+| Realm Category   | Governing Attribute | Real-World Habits                                            |
+| ---------------- | ------------------- | ------------------------------------------------------------ |
+| 🏋️ **Strength**  | `strength`          | Gym workouts, weightlifting, pushups, running, martial arts  |
+| 🔮 **Intellect** | `intellect`         | Coding, reading, technical architecture, study sessions      |
+| 🌿 **Vitality**  | `vitality`          | 8 hours of sleep, drinking 2L water, healthy meals, posture  |
+| ⚡ **Agility**   | `agility`           | Fast chores, desk decluttering, swift errands, inbox zero    |
+| ✨ **Charisma**  | `charisma`          | Networking, public speaking, meditation, journaling, empathy |
 
 ### 3. Difficulty Multipliers
+
 Quests reward XP, Gold, and attribute points scaled to difficulty:
+
 - **Trivial**: 15 XP, 5 Gold, +1 Attribute Point
 - **Easy**: 30 XP, 10 Gold, +1 Attribute Point
 - **Medium**: 60 XP, 25 Gold, +2 Attribute Points
@@ -84,13 +75,15 @@ Quests reward XP, Gold, and attribute points scaled to difficulty:
 - **Epic**: 250 XP, 120 Gold, +5 Attribute Points
 
 ### 4. Streak Multiplier Engine
+
 - Tracks consecutive daily activity against timestamps.
 - Active streaks grant an escalating Gold Bonus Multiplier:
   $$\text{Multiplier} = 1 + \min(0.5, (\text{Streak} - 1) \times 0.05)$$
-  *(Earning up to **+50% bonus gold** on every quest completed!)*
+  _(Earning up to **+50% bonus gold** on every quest completed!)_
 
 ### 5. Dungeon Boss Raids
-- World bosses (e.g. *The Procrastination Behemoth*, *The Chimera of Distractions*, *The Burnout Dragon*) possess high HP pools.
+
+- World bosses (e.g. _The Procrastination Behemoth_, _The Chimera of Distractions_, _The Burnout Dragon_) possess high HP pools.
 - Every completed quest lands an offensive strike against the boss:
   $$\text{Boss Strike Damage} = \text{Difficulty Base} + \lfloor \text{Primary Attribute} \times 0.8 \rfloor$$
 - Slaying a boss awards massive Gold and XP bounties and unlocks exclusive title badges!
@@ -113,7 +106,7 @@ Quests reward XP, Gold, and attribute points scaled to difficulty:
 ```mermaid
 graph TD
     Client["📱 Client Browser / Mobile Web\n(Next.js 14 Responsive PWA)"]
-    
+
     subgraph Vercel ["Vercel Global Edge CDN"]
         EdgeProxy["Edge Reverse Proxy\n/api/* -> Render Backend"]
         ReactApp["Next.js App Router (SSR + Client)\n- Tailwind Dark-Fantasy Design\n- Web Audio Synthesizer\n- Dynamic SVG Attribute Radar\n- Class Avatars & Confetti"]
@@ -175,31 +168,38 @@ LIFE RPG/
 ## 🚀 Local Development Setup
 
 ### Prerequisites
+
 - **Node.js**: v18.17.0+ (Tested up to Node v22)
 - **npm**: v9+ (Bundled with Node)
 - **Zero Docker required!**
 
 ### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/DK0483/Life-RPG-Team-DeltaCharlie.git
 cd "Life-RPG-Team-DeltaCharlie"
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 npm run install:all
 ```
-*(Or run `npm install` inside both `frontend/` and `backend/`)*
+
+_(Or run `npm install` inside both `frontend/` and `backend/`)_
 
 ### 3. Initialize & Seed Database
+
 ```bash
 npm run seed
 ```
 
 ### 4. Start Development Servers
+
 ```bash
 npm run dev
 ```
+
 - **Frontend App**: [http://localhost:3000](http://localhost:3000)
 - **Backend API**: [http://localhost:5000](http://localhost:5000)
 - **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
@@ -218,28 +218,3 @@ Life RPG is deployed with zero infrastructure costs using modern cloud edge arch
    - Next.js 14 hosted on Vercel's global edge network.
    - Transparent serverless reverse-proxy rewrite rule in `next.config.mjs` forwards all `/api/*` requests to Render, bypassing third-party cookie restrictions:
      `https://life-rpg-eight-teal.vercel.app`
-
-*(Full instructions available in [DEPLOYMENT.md](file:///c:/Users/DHYEY%20KABRA/OneDrive/Desktop/LIFE%20RPG/DEPLOYMENT.md))*
-
----
-
-## 🎬 2-Minute Hackathon Demo Script
-
-| Timestamp | Action | Key Feature Demonstrated |
-| :---: | :--- | :--- |
-| **0:00 - 0:25** | Open [Live Site](https://life-rpg-eight-teal.vercel.app/) $\rightarrow$ Click **"Sign Up"** $\rightarrow$ Choose Class (*Warrior* / *Mage*) $\rightarrow$ Create hero. | Secure JWT registration, dynamic Class Avatar, starter quest population. |
-| **0:25 - 0:45** | Click **"1-Click Add"** on the *Code Architect* Curated Quest Pack. | Batch quest generation with difficulty ratings and attribute category tags. |
-| **0:45 - 1:05** | Check off a quest to mark it completed. | Synthesized audio chime, confetti cannon, floating combat text (`+60 XP`), and physical damage strike on the World Boss. |
-| **1:05 - 1:25** | Observe the **Attribute Radar** expanding and inspect the **Guidance Banner** completing steps. | Dynamic SVG visualization and real-time attribute progression. |
-| **1:25 - 1:45** | Complete remaining tasks to level up $\rightarrow$ Open **Armory & Shop** $\rightarrow$ Purchase an Iron Sword $\rightarrow$ Equip in **Hero Backpack**. | Level-up fanfare modal, merchant gold economy, and paperdoll stat bonuses. |
-| **1:45 - 2:00** | Switch to Mobile view or inspect responsive layout. | Mobile bottom navigation dock, touch-optimized card layout, and 100% database persistence across reloads. |
-
----
-
-## 👥 Team DeltaCharlie
-
-Built with ❤️ for the Hackathon by **Team DeltaCharlie**.
-
-- **Repository**: [https://github.com/DK0483/Life-RPG-Team-DeltaCharlie](https://github.com/DK0483/Life-RPG-Team-DeltaCharlie)
-- **Live Demo**: [https://life-rpg-eight-teal.vercel.app/](https://life-rpg-eight-teal.vercel.app/)
-- **Backend API**: [https://life-rpg-team-deltacharlie.onrender.com/](https://life-rpg-team-deltacharlie.onrender.com/)
